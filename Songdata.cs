@@ -50,8 +50,26 @@ internal class Songdata {
               spotifyID = current;
               break;
             case 5:
-              // implement tags de-delimiter here
-              Console.WriteLine("implementme");
+              if (current.Length != 0){
+                int numberelements = 1;
+                for (int ii = 0; ii < current.Length; ii++){ 
+                  if (current[ii] == ','){ 
+                    numberelements++;
+                  }
+                }
+                tags = new string [numberelements];
+                string ccurrent = "";
+                int currentelement = 0;
+                for (int ii = 0; ii < current.Length; ii++){ 
+                  if (current[ii] == ','){ 
+                    tags[currentelement] = ccurrent;
+                    currentelement++;
+                    ccurrent = "";
+                  } else { 
+                    ccurrent += current[ii];
+                  }
+                }
+              }
               break;
             case 6:
               genre = current;
@@ -101,6 +119,7 @@ internal class Songdata {
             default:
               break;
           }
+          current = "";
         } else {
           if (rawinput[i] == '"'){ 
             inquotations = true;

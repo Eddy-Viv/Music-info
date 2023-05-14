@@ -10,12 +10,12 @@ internal class Filereader {
     filecontents = File.ReadAllText(path);
   }
 
-  public string getcontents() {
+  internal string getcontents() {
 
     return filecontents;
   }
 
-  public string getcontents(int start, int length = 10) {
+  internal string getcontents(int start, int length = 10) {
     return filecontents.Substring(start, length);
   }
 
