@@ -26,7 +26,7 @@ internal class Songdata {
   double tempo;
   int timesignature;
 
-  Songdata(string rawinput = "") {
+  internal Songdata(string rawinput = "") {
     string current = "";
     int i = 0, variableno = 0;
     bool inquotations = false;
@@ -61,7 +61,10 @@ internal class Songdata {
                 string ccurrent = "";
                 int currentelement = 0;
                 for (int ii = 0; ii < current.Length; ii++){ 
-                  if (current[ii] == ','){ 
+                  if (current[ii] == ','){
+                    if (ccurrent[0] == ' '){ 
+                      ccurrent = ccurrent.Substring(1);
+                    }
                     tags[currentelement] = ccurrent;
                     currentelement++;
                     ccurrent = "";
@@ -119,6 +122,7 @@ internal class Songdata {
             default:
               break;
           }
+          variableno++;
           current = "";
         } else {
           if (rawinput[i] == '"'){ 
@@ -134,6 +138,34 @@ internal class Songdata {
       }
       i++;
     }
+  }
+  
+  public void Printme (){ 
+    Console.WriteLine(trackID);
+    Console.WriteLine(name);
+    Console.WriteLine(artist);
+    Console.WriteLine(spotifypreviewURL);
+    Console.WriteLine(spotifyID);
+    for (int i = 0; i < tags.Length; i++){ 
+      Console.Write(tags[i] + " ");
+    }
+    Console.WriteLine("");
+    Console.WriteLine(genre);
+    Console.WriteLine(year);
+    Console.WriteLine(durationMS);
+    Console.WriteLine(danceability);
+    Console.WriteLine(energy);
+    Console.WriteLine(key);
+    Console.WriteLine(loudness);
+    Console.WriteLine(mode);
+    Console.WriteLine(speechiness);
+    Console.WriteLine(acousticness);
+    Console.WriteLine(instrumentalness);
+    Console.WriteLine(liveness);
+    Console.WriteLine(valence);
+    Console.WriteLine(tempo);
+    Console.WriteLine(timesignature);
+
   }
 
 }

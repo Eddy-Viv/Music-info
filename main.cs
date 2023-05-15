@@ -25,6 +25,22 @@ internal class Musicdata
       readoutit++;
     }
     Songdata [] dataset = new Songdata [nodatapoints];
+    string datapointreadout = "";
+    int datasetpos = 0;
+    for (int i = 0; i < readout.Length; i++){ 
+      if (readout[i] == '\xA'){ 
+        dataset[datasetpos] = new Songdata(datapointreadout);
+        datapointreadout = "";
+        datasetpos++;
+      } else { 
+        datapointreadout += readout[i];
+      }
+    }
+    for (int i = 0; i < 10; i++){ 
+      dataset[i].Printme();
+      Thread.Sleep(1000);
+    
+    }
 
 
 
